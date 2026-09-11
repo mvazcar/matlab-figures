@@ -13,8 +13,8 @@ The intended change is small and deliberate:
 `figures.m`, the original illustration script, uses both and writes its twelve figures to `figures/` as PNG.
 
 <p>
-  <img src="figures/qualitative.png" alt="Three qualitatively different time series, in blue, red and green" width="49%">
-  <img src="figures/above_below.png" alt="A time series with colored areas above and below a target" width="49%">
+  <img src="figures/qualitative.png?v=2" alt="Three qualitatively different time series, in blue, red and green" width="49%">
+  <img src="figures/above_below.png?v=2" alt="A time series with colored areas above and below a target" width="49%">
 </p>
 
 ## Usage
