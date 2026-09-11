@@ -1,0 +1,72 @@
+% =========================================================================
+% figure_style: the figure template, with the Set1 palette
+%
+%   s = figure_style(fontSize, lineWidth)
+%
+% Sets the graphics defaults of the template, a minimalist style after
+% Tufte: Helvetica, black axes and grid, ticks out and short, horizontal
+% grid only, no box, axes line width 1, title in normal weight, labels
+% and title in the axes font size, white figures 8.5 by 6.375 inches
+% printed at their screen size. The palette is ColorBrewer's Set1: red,
+% blue, green, purple, orange, yellow, brown, pink and gray, set as the
+% color order so that unstyled lines and bars take them in turn, and
+% returned by name in s, with the line width and font size in s.width and
+% s.font. The single figure of the template uses a 24 point font and
+% lines of width 3, the defaults; multi-panel figures keep the font and
+% set their size in inches at 8.5 by 6.375 per panel. Save figures with
+% figure_print, PNG at 300 dpi, the convention. Call figure_style once at
+% the top of a figure script; the defaults persist for the MATLAB session.
+%
+%   s = figure_style() ;
+%   figure ; plot(x, y, 'Color', s.blue) ; ylabel('Unit')
+%   figure_print('basic.png')
+% =========================================================================
+function s = figure_style(fontSize, lineWidth)
+
+if nargin < 1 || isempty(fontSize), fontSize = 24 ; end
+if nargin < 2 || isempty(lineWidth), lineWidth = 3 ; end
+
+% Set1, ColorBrewer
+hex = {'e41a1c', '377eb8', '4daf4a', '984ea3', 'ff7f00', 'ffff33', 'a65628', 'f781bf', '999999'} ;
+set1 = zeros(9, 3) ;
+for i = 1:9
+    set1(i, :) = transpose(sscanf(hex{i}, '%2x%2x%2x'))/255 ;
+end
+s.set1 = set1 ;
+s.red = set1(1, :) ; s.blue = set1(2, :) ; s.green = set1(3, :) ; s.purple = set1(4, :) ; s.orange = set1(5, :) ;
+s.yellow = set1(6, :) ; s.brown = set1(7, :) ; s.pink = set1(8, :) ; s.gray = set1(9, :) ; s.black = [0 0 0] ;
+s.width = lineWidth ;
+s.font = fontSize ;
+
+% Figure: white, 4:3 at 8.5 by 6.375 inches, printed at its screen size
+set(groot, 'defaultFigureColor', 'w') ;
+set(groot, 'defaultFigureUnits', 'inches') ;
+set(groot, 'defaultFigurePosition', [1, 1, 8.5, 6.375]) ;
+set(groot, 'defaultFigurePaperPositionMode', 'auto') ;
+
+% Axes
+set(groot, 'defaultAxesFontName', 'Helvetica') ;
+set(groot, 'defaultAxesFontSize', fontSize) ;
+set(groot, 'defaultAxesLabelFontSizeMultiplier', 1) ;
+set(groot, 'defaultAxesTitleFontSizeMultiplier', 1) ;
+set(groot, 'defaultAxesTitleFontWeight', 'normal') ;
+set(groot, 'defaultAxesXColor', 'k') ;
+set(groot, 'defaultAxesYColor', 'k') ;
+set(groot, 'defaultAxesGridColor', 'k') ;
+set(groot, 'defaultAxesLineWidth', 1) ;
+set(groot, 'defaultAxesYGrid', 'on') ;
+set(groot, 'defaultAxesXGrid', 'off') ;
+set(groot, 'defaultAxesTickDirMode', 'manual') ;
+set(groot, 'defaultAxesTickDir', 'out') ;
+set(groot, 'defaultAxesTickLength', [0.005, 0.005]) ;
+set(groot, 'defaultAxesBox', 'off') ;
+set(groot, 'defaultAxesColorOrder', set1) ;
+
+% Lines, legends and text
+set(groot, 'defaultLineLineWidth', lineWidth) ;
+set(groot, 'defaultLegendBox', 'off') ;
+set(groot, 'defaultLegendFontName', 'Helvetica') ;
+set(groot, 'defaultLegendFontSize', fontSize) ;
+set(groot, 'defaultTextFontName', 'Helvetica') ;
+set(groot, 'defaultTextFontSize', fontSize) ;
+end

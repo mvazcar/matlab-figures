@@ -4,22 +4,23 @@
 %
 %% Description
 %
-% This script produces a collection of scientific figure that carefully follow data vizualization best practices.
+% This script produces a collection of scientific figures that carefully follow data visualization best practices,
+% with the defaults of figure_style.m, the Set1 palette, and the convention of figure_print.m: PNG at 300 dpi, in figures/.
 %
 %% Output
 %
-% * basic.pdf – Figure with basic time series
-% * periods.pdf – Figure with basic time series and shaded periods
-% * qualitative.pdf – Figure with several qualitatively different time series
-% * qualitative_variant.pdf – Same figure as qualitative.pdf, with different line styles
-% * sequential.pdf – Figure with several quantitatively different time series
-% * sequential_variant.pdf – Same figure as sequential.pdf, with different colors
-% * above_below.pdf – Figure with colored areas to indicate that a time series is below or above a target
-% * higher_lower.pdf – Figure with two time series and colored areas to indicate that a time series is higher or lower than the other
-% * scatter.pdf – Figure with basic scatter plot
-% * scatter_transparent.pdf – Figure with scatter plot of transparent dots
-% * scatter_connected.pdf – Figure with scatter plot of connected dots
-% * scatter_above_below.pdf – Figure with a scatter plot and different dot colors to indicate that the observations are above or below a treshold
+% * basic.png – Figure with basic time series
+% * periods.png – Figure with basic time series and shaded periods
+% * qualitative.png – Figure with several qualitatively different time series
+% * qualitative_variant.png – Same figure as qualitative.pdf, with different line styles
+% * sequential.png – Figure with several quantitatively different time series
+% * sequential_variant.png – Same figure as sequential.pdf, with different colors
+% * above_below.png – Figure with colored areas to indicate that a time series is below or above a target
+% * higher_lower.png – Figure with two time series and colored areas to indicate that a time series is higher or lower than the other
+% * scatter.png – Figure with basic scatter plot
+% * scatter_transparent.png – Figure with scatter plot of transparent dots
+% * scatter_connected.png – Figure with scatter plot of connected dots
+% * scatter_above_below.png – Figure with a scatter plot and different dot colors to indicate that the observations are above or below a treshold
 %
 
 %% Clear workspace
@@ -28,47 +29,24 @@ close all
 clear
 clc
 
-%% Set default properties for 4:3 figure
+%% Set the template's defaults
 
-figureWidth = 8.5;
-figureHeight = 6.375;
-set(groot, 'defaultFigureUnits', 'inches')
-set(groot, 'defaultFigurePosition', [1,1,figureWidth,figureHeight]);
-set(groot, 'defaultFigurePaperPosition', [0, 0, figureWidth,figureHeight]);
-set(groot, 'defaultFigurePaperSize', [figureWidth,figureHeight]);
-
-%% Set default properties for axes
-
-set(groot, 'defaultAxesFontName', 'Helvetica')
-set(groot, 'defaultAxesFontSize', 24)
-set(groot, 'defaultAxesLabelFontSizeMultiplier', 1)
-set(groot, 'defaultAxesTitleFontSizeMultiplier', 1)
-set(groot, 'defaultAxesTitleFontWeight', 'normal')
-set(groot, 'defaultAxesXColor', 'k')
-set(groot, 'defaultAxesYColor', 'k')
-set(groot, 'defaultAxesGridColor', 'k')
-set(groot, 'defaultAxesLineWidth', 1)
-set(groot, 'defaultAxesYGrid', 'on')
-set(groot, 'defaultAxesXGrid', 'off')
-set(groot, 'defaultAxesTickDirMode', 'manual')
-set(groot, 'defaultAxesTickDir', 'out')
-set(groot, 'defaultAxesTickLength',[0.005, 0.005])
-set(groot, 'defaultAxesBox','off')
+% Helvetica, black axes, ticks out, horizontal grid, no box, 8.5 by 6.375 inches, and the Set1 palette as the color order
+s = figure_style();
 
 %% Predefine qualitative color palettes
 
-% Dark colors
+% Set1 colors, from figure_style
 
-darkPalette = ['#1b9e77';'#d95f02';'#7570b3';'#e7298a';'#66a61e';'#e6ab02';'#a6761d';'#666666'];
-
-greenColor = darkPalette(1,:);
-orangeColor = darkPalette(2,:);
-purpleColor = darkPalette(3,:);
-pinkColor = darkPalette(4,:);
-appleColor = darkPalette(5,:);
-yellowColor = darkPalette(6,:);
-brownColor = darkPalette(7,:);
-grayColor = darkPalette(8,:);
+redColor = s.red;
+blueColor = s.blue;
+greenColor = s.green;
+purpleColor = s.purple;
+orangeColor = s.orange;
+yellowColor = s.yellow;
+brownColor = s.brown;
+pinkColor = s.pink;
+grayColor = s.gray;
 
 % Paired colors
 
@@ -180,8 +158,8 @@ plot(time, data1, purpleLine{:})
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'basic.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/basic.png')
 
 %% Create a plot with gray period areas
 
@@ -212,8 +190,8 @@ plot(time, data1, purpleLine{:})
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'periods.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/periods.png')
 
 %% Create an plot with qualitative variables
 
@@ -249,8 +227,8 @@ plot(time, data3, greenLine{:})
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'qualitative.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/qualitative.png')
 
 %% Create another plot with qualitative variables
 
@@ -281,8 +259,8 @@ plot(time, data3, greenLine{:})
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'qualitative_variant.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/qualitative_variant.png')
 
 %% Create a plot with sequential variables
 
@@ -317,8 +295,8 @@ p.Color = blue2;
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'sequential.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/sequential.png')
 
 %% Create another plot with sequential variables
 
@@ -348,8 +326,8 @@ p.Color = gray2;
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'sequential_variant.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/sequential_variant.png')
 
 %% Create a plot with above-below areas
 
@@ -384,8 +362,8 @@ yline(0.6, thinLine{:})
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'above_below.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/above_below.png')
 
 %% Create another plot with higher-lower areas
 
@@ -411,8 +389,8 @@ plot(time, data2, orangeLine{:})
 set(gca, xAxis{:}, yAxis{:})
 ylabel('Unit of observation')
 
-%Print figure
-print('-dpdf', 'higher_lower.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/higher_lower.png')
 
 %% Create a basic scatter plot
 
@@ -462,8 +440,8 @@ set(gca, xAxis{:}, yAxis{:})
 xlabel('Data A')
 ylabel('Data B')
 
-%Print figure
-print('-dpdf', 'scatter.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/scatter.png')
 
 %% Create a scatter plot with transparent dots
 
@@ -491,8 +469,8 @@ set(gca, xAxis{:}, yAxis{:})
 xlabel('Data A')
 ylabel('Data B')
 
-%Print figure
-print('-dpdf', 'scatter_transparent.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/scatter_transparent.png')
 
 %% Create a scatter plot with connected dots
 
@@ -526,8 +504,8 @@ set(gca, xAxis{:}, yAxis{:})
 xlabel('Data A')
 ylabel('Data B')
 
-%Print figure
-print('-dpdf', 'scatter_connected.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/scatter_connected.png')
 
 %% Create an above-below scatter plot
 
@@ -573,5 +551,5 @@ set(gca, xAxis{:}, yAxis{:})
 xlabel('Data A')
 ylabel('Data B')
 
-%Print figure
-print('-dpdf', 'scatter_above_below.pdf')
+% Print figure, PNG at 300 dpi
+figure_print('figures/scatter_above_below.png')
