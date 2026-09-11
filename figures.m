@@ -140,10 +140,10 @@ yAxis = [fieldnames(obj), struct2cell(obj)]';
 
 % Predefine properties for lines
 clear obj
-obj.Color = purpleColor;
+obj.Color = blueColor;
 obj.LineWidth = 3;
 obj.LineStyle = '-';
-purpleLine = [fieldnames(obj), struct2cell(obj)]';
+blueLine1 = [fieldnames(obj), struct2cell(obj)]';
 
 % Open figure 
 iFigure = 1;
@@ -152,7 +152,7 @@ clf
 hold on
 
 % Plot data
-plot(time, data1, purpleLine{:})
+plot(time, data1, blueLine1{:})
 
 %Populate axes
 set(gca, xAxis{:}, yAxis{:})
@@ -184,7 +184,7 @@ hold on
 xregion(startPeriod, endPeriod, periodArea{:});
 
 % Plot data
-plot(time, data1, purpleLine{:})
+plot(time, data1, blueLine1{:})
 
 %Populate axes
 set(gca, xAxis{:}, yAxis{:})
@@ -202,10 +202,10 @@ data3 = (data1+data2)./2;
 
 % Predefine additional properties for lines
 clear obj
-obj.Color = orangeColor;
+obj.Color = redColor;
 obj.LineWidth = 3;
 obj.LineStyle = '-.';
-orangeLine = [fieldnames(obj), struct2cell(obj)]';
+redLine = [fieldnames(obj), struct2cell(obj)]';
 clear obj
 obj.Color = greenColor;
 obj.LineWidth = 3;
@@ -219,8 +219,8 @@ clf
 hold on
 
 % Plot data
-plot(time, data1, purpleLine{:})
-plot(time, data2, orangeLine{:})
+plot(time, data1, blueLine1{:})
+plot(time, data2, redLine{:})
 plot(time, data3, greenLine{:})
 
 %Populate axes
@@ -234,10 +234,10 @@ figure_print('figures/qualitative.png')
 
 % Predefine additional properties for lines
 clear obj
-obj.Color = orangeColor;
+obj.Color = redColor;
 obj.LineWidth = 3;
 obj.LineStyle = '-';
-orangeLine = [fieldnames(obj), struct2cell(obj)]';
+redLine = [fieldnames(obj), struct2cell(obj)]';
 clear obj
 obj.Color = greenColor;
 obj.LineWidth = 3;
@@ -251,8 +251,8 @@ clf
 hold on
 
 % Plot data
-plot(time, data1, purpleLine{:})
-plot(time, data2, orangeLine{:})
+plot(time, data1, blueLine1{:})
+plot(time, data2, redLine{:})
 plot(time, data3, greenLine{:})
 
 %Populate axes
@@ -333,7 +333,7 @@ figure_print('figures/sequential_variant.png')
 
 % Predefine property for target line
 clear obj
-obj.Color = orangeColor;
+obj.Color = redColor;
 obj.LineWidth = 1;
 obj.LineStyle = '-';
 thinLine = [fieldnames(obj), struct2cell(obj)]';
@@ -349,11 +349,11 @@ a = area(time, [0.6.*ones(size(data1)), max(data1 - 0.6,0), min(data1 - 0.6,0)],
 a(1).FaceAlpha = 0;
 a(2).FaceAlpha = 0.2;
 a(3).FaceAlpha = 0.2;
-a(2).FaceColor = purpleColor;
-a(3).FaceColor = orangeColor;
+a(2).FaceColor = blueColor;
+a(3).FaceColor = redColor;
 
 % Plot data
-plot(time, data1, purpleLine{:})
+plot(time, data1, blueLine1{:})
 
 % Highlight target of 0.6
 yline(0.6, thinLine{:})
@@ -378,12 +378,12 @@ a = area(time, [data2, max(data1 - data2,0), min(data1 - data2,0)], 'LineStyle',
 a(1).FaceAlpha = 0;
 a(2).FaceAlpha = 0.2;
 a(3).FaceAlpha = 0.2;
-a(2).FaceColor = purpleColor;
-a(3).FaceColor = orangeColor;
+a(2).FaceColor = blueColor;
+a(3).FaceColor = redColor;
 
 % Plot data series
-plot(time, data1, purpleLine{:})
-plot(time, data2, orangeLine{:})
+plot(time, data1, blueLine1{:})
+plot(time, data2, redLine{:})
 
 %Populate axes
 set(gca, xAxis{:}, yAxis{:})
@@ -421,10 +421,10 @@ yAxis = [fieldnames(obj), struct2cell(obj)]';
 clear obj
 obj.LineWidth = 1;
 obj.SizeData = 100;
-obj.MarkerFaceColor = purpleColor;
-obj.MarkerEdgeColor = purpleColor;
+obj.MarkerFaceColor = blueColor;
+obj.MarkerEdgeColor = blueColor;
 obj.Marker = 'o';
-purpleDot = [fieldnames(obj), struct2cell(obj)]';
+blueDot = [fieldnames(obj), struct2cell(obj)]';
 
 % Open figure 
 iFigure = iFigure + 1;
@@ -433,7 +433,7 @@ clf
 hold on
 
 % Plot data
-scatter(data7, data8, purpleDot{:})
+scatter(data7, data8, blueDot{:})
 
 %Populate axes
 set(gca, xAxis{:}, yAxis{:})
@@ -449,8 +449,8 @@ figure_print('figures/scatter.png')
 clear obj
 obj.LineWidth = 1;
 obj.SizeData = 100;
-obj.MarkerFaceColor = purpleColor;
-obj.MarkerEdgeColor = purpleColor;
+obj.MarkerFaceColor = blueColor;
+obj.MarkerEdgeColor = blueColor;
 obj.Marker = 'o';
 obj.MarkerFaceAlpha = 0.4;
 transparentDot = [fieldnames(obj), struct2cell(obj)]';
@@ -485,10 +485,10 @@ obj.LineWidth = 1;
 obj.LineStyle = '-';
 obj.Color = gray4;
 obj.MarkerSize = 10;
-obj.MarkerFaceColor = purpleColor;
-obj.MarkerEdgeColor = purpleColor;
+obj.MarkerFaceColor = blueColor;
+obj.MarkerEdgeColor = blueColor;
 obj.Marker = 'o';
-purpleDot = [fieldnames(obj), struct2cell(obj)]';
+blueDot = [fieldnames(obj), struct2cell(obj)]';
 
 % Open figure 
 iFigure = iFigure + 1;
@@ -497,7 +497,7 @@ clf
 hold on
 
 % Plot data
-plot(data9, data10, purpleDot{:})
+plot(data9, data10, blueDot{:})
 
 %Populate axes
 set(gca, xAxis{:}, yAxis{:})
