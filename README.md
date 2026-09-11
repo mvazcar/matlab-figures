@@ -1,37 +1,33 @@
 # Minimalist MATLAB Template for Scientific Figures
 
-This repository contains a MATLAB template to create scientific figures. The template carefully follows [best practices for data visualization](https://www.edwardtufte.com/tufte/books_vdqi).
+A fork of [pmichaillat/matlab-figures](https://github.com/pmichaillat/matlab-figures), Pascal Michaillat's MATLAB template for scientific figures, which carefully follows [best practices for data visualization](https://www.edwardtufte.com/tufte/books_vdqi). This fork keeps his design and packages it so that any project can call it, with two changes described below.
 
-## This fork
+## What this fork changes
 
-This fork keeps the template's style and packages it as two functions, so that any project can call them:
+The intended change is small and deliberate:
 
-+ `figure_style.m` sets the template's defaults for the MATLAB session: Helvetica, black axes and grid, ticks out, horizontal grid only, no box, a 4:3 figure of 8.5 by 6.375 inches, a 24 point font and lines of width 3. Its one departure from the original is the palette: [ColorBrewer's Set1](https://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9), red, blue, green, purple, orange, yellow, brown, pink and gray, set as the color order and returned by name, `s = figure_style(); plot(x, y, 'Color', s.blue)`.
-+ `figure_print.m` saves a figure with the convention of this fork: PNG at 300 dpi, at the figure's size in inches, `figure_print('basic.png')`.
++ **The template is a function.** `figure_style.m` sets the template's defaults for the MATLAB session in one call: Helvetica, black axes and grid, ticks out and short, horizontal grid only, no box, axes line width 1, titles in normal weight, a white 4:3 figure of 8.5 by 6.375 inches, a 24 point font and lines of width 3. Multi-panel figures keep the font and use 8.5 by 6.375 inches per panel.
++ **The palette is Set1.** The qualitative palette is [ColorBrewer's Set1](https://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9), red, blue, green, purple, orange, yellow, brown, pink and gray. It is set as the color order, so unstyled lines and bars take the colors in turn, and returned by name: `s = figure_style(); plot(x, y, 'Color', s.blue)`. The paired and sequential palettes of the original are unchanged.
++ **The output convention is PNG at 300 dpi.** `figure_print.m` saves the current figure, or a given one, at its size in inches: `figure_print('basic.png')`.
 
-`figures.m` uses both, and writes its figures to `figures/` as PNG. To use the template in a project, add this folder to the MATLAB path, or copy the two functions into it, call `figure_style` once at the top of each figure script and `figure_print` to save.
+`figures.m`, the original illustration script, uses both and writes its twelve figures to `figures/` as PNG.
 
-## Documentation
-
-The template is documented at https://pascalmichaillat.org/d/.
-
-## Illustration
-
-The figures produced by the template can be viewed at https://pascalmichaillat.org/d.pdf.
+![Three qualitatively different time series in the template's style with the Set1 palette](figures/qualitative.png)
 
 ## Usage
 
-+ Clone the repository to your local machine.
-+ Open MATLAB and set the repository as the current folder.
-+ Run `figures.m` to write the figures to `figures/` as PNG, or `publish('figures.m')` to generate an HTML page at `html/figures.html`. The page can be opened in any web browser. It displays the MATLAB code and its output. This is a good way to see the figures produced by the template, and to experiment.
-+ Use any part of the template defined in `figures.m` to produce figures for your project.
-+ On a Mac, the figures can easily be annotated with Keynote. This procedure is more user-friendly and more flexible than directly annotating the figures in MATLAB. The Keynote file `figures.key` illustrates how to annotate the figures. The main step is to insert the image produced by MATLAB as a background to the slide using `Image Fill` with the option `Scale to Fill`.
-+ The `figures.key` file can then be exported as a PDF file so the figures can be used elsewhere. The `figures.pdf` file is obtained by exporting `figures.key`.
++ Clone the repository, and either add its folder to the MATLAB path or copy `figure_style.m` and `figure_print.m` into your project.
++ Call `figure_style` once at the top of each figure script, and `figure_print` to save each figure.
++ Run `figures.m` to reproduce the illustrations in `figures/`, or `publish('figures.m')` to generate an HTML page at `html/figures.html` with the code and its output. Any part of `figures.m` can be used as a starting point.
+
+## Shoutout
+
+All of the design is Pascal Michaillat's: the proportions, the typography, the axes, the grids and the restraint that makes the figures readable. Shoutout to him for the template and for documenting it at [pascalmichaillat.org/d](https://pascalmichaillat.org/d/), where the original figures can be viewed at [pascalmichaillat.org/d.pdf](https://pascalmichaillat.org/d.pdf). This fork only changes the palette and the way the template is called.
 
 ## Software
 
-+ The template was developed using MATLAB R2023B on macOS Sonoma (Apple silicon).
-+ Other MATLAB releases and operating systems may require minor adjustments. Please [report any issues](https://github.com/pmichaillat/matlab-figures/issues) to help improve compatibility.
++ The original template was developed using MATLAB R2023B on macOS Sonoma (Apple silicon). This fork was tested with MATLAB R2024b on Windows 11.
++ Other MATLAB releases and operating systems may require minor adjustments. Please report any issues to help improve compatibility.
 
 ## License
 
