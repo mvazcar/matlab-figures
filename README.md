@@ -8,7 +8,7 @@ The intended change is small and deliberate:
 
 + **The template is a function.** `figure_style.m` sets the template's defaults for the MATLAB session in one call: Helvetica, black axes and grid, ticks out and short, horizontal grid only, no box, axes line width 1, titles in normal weight, a white 4:3 figure of 8.5 by 6.375 inches, a 24 point font and lines of width 3. Multi-panel figures keep the font and use 8.5 by 6.375 inches per panel.
 + **The palette is Set1.** The qualitative palette is [ColorBrewer's Set1](https://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9), red, blue, green, purple, orange, yellow, brown, pink and gray. It is set as the color order, so unstyled lines and bars take the colors in turn, and returned by name: `s = figure_style(); plot(x, y, 'Color', s.blue)`. The paired and sequential palettes of the original are unchanged.
-+ **The output convention is PNG at 300 dpi.** `figure_print.m` saves the current figure, or a given one, at its size in inches: `figure_print('basic.png')`.
++ **The output convention is PNG at 300 dpi.** `figure_print.m` saves the current figure, or a given one, at its size in inches: `figure_print('basic.png')`. For a figure larger than the display, which MATLAB clamps a figure to, draw it at a fraction `s` of the sheet with the fonts and lines scaled, `figure_style(24*s, 3*s)`, and pass the sheet in inches, `figure_print(file, fig, 300, sheet)`: it prints at `300/s` dots per inch, the pixels of the sheet at 300 dpi with everything in the proportions drawn.
 
 `figures.m`, the original illustration script, uses both and writes its twelve figures to `figures/` as PNG.
 
